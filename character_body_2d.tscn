@@ -1,7 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://u6a4o4h1ymv6"]
+[gd_scene load_steps=13 format=3 uid="uid://u6a4o4h1ymv6"]
 
 [ext_resource type="Texture2D" uid="uid://byvtqheylxrpd" path="res://FreeKnight_v1/Colour2/NoOutline/120x80_PNGSheets/_Idle.png" id="1_f50pn"]
 [ext_resource type="Script" uid="uid://6r3uwb7xejbg" path="res://Scripts/character_body_2d.gd" id="1_ij6vw"]
+[ext_resource type="Texture2D" uid="uid://6frax5bp43d3" path="res://FreeKnight_v1/Colour2/NoOutline/120x80_PNGSheets/_Fall.png" id="3_dd465"]
+[ext_resource type="Texture2D" uid="uid://dnyxpudohtbax" path="res://FreeKnight_v1/Colour2/NoOutline/120x80_PNGSheets/_Jump.png" id="4_lhvu3"]
+[ext_resource type="Texture2D" uid="uid://bqte6l1qd50rx" path="res://FreeKnight_v1/Colour2/NoOutline/120x80_PNGSheets/_Run.png" id="5_4sjlk"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ij6vw"]
 radius = 9.0
@@ -39,11 +42,102 @@ tracks/0/keys = {
 "update": 0,
 "values": [Rect2(45, 43, 19, 37)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D2:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(40, 43, 27, 37)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D3:region_rect")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(45, 43, 23, 37)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D4:region_rect")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(43, 43, 27, 36)]
+}
+
+[sub_resource type="Animation" id="Animation_qp52p"]
+resource_name = "fall"
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D2:region_rect")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Rect2(40, 43, 27, 37), Rect2(160, 43, 27, 37), Rect2(280, 43, 27, 37), Rect2(40, 43, 27, 37)]
+}
+
+[sub_resource type="Animation" id="Animation_6ct3r"]
+resource_name = "jump"
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D3:region_rect")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Rect2(45, 43, 23, 37), Rect2(165, 43, 23, 37), Rect2(285, 43, 23, 37), Rect2(45, 43, 23, 37)]
+}
+
+[sub_resource type="Animation" id="Animation_1kp85"]
+resource_name = "move"
+length = 2.25
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D4:region_rect")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Rect2(43, 43, 27, 36), Rect2(165, 44, 24, 36), Rect2(290, 44, 16, 36), Rect2(407, 43, 17, 36), Rect2(524, 42, 24, 34), Rect2(641, 43, 28, 35), Rect2(764, 44, 24, 36), Rect2(887, 44, 16, 36), Rect2(1007, 43, 16, 36), Rect2(1123, 42, 25, 34)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dd465"]
 _data = {
 &"RESET": SubResource("Animation_44cfe"),
-&"idle": SubResource("Animation_ghijl")
+&"fall": SubResource("Animation_qp52p"),
+&"idle": SubResource("Animation_ghijl"),
+&"jump": SubResource("Animation_6ct3r"),
+&"move": SubResource("Animation_1kp85")
 }
 
 [node name="Player" type="CharacterBody2D"]
@@ -66,7 +160,25 @@ libraries = {
 autoplay = "idle"
 
 [node name="Sprite2D" type="Sprite2D" parent="PlayerAnimator"]
-position = Vector2(0, 3)
+position = Vector2(1, 4)
 texture = ExtResource("1_f50pn")
 region_enabled = true
 region_rect = Rect2(45, 43, 19, 37)
+
+[node name="Sprite2D2" type="Sprite2D" parent="PlayerAnimator"]
+position = Vector2(27, 59)
+texture = ExtResource("3_dd465")
+region_enabled = true
+region_rect = Rect2(40, 43, 27, 37)
+
+[node name="Sprite2D3" type="Sprite2D" parent="PlayerAnimator"]
+position = Vector2(71, 0)
+texture = ExtResource("4_lhvu3")
+region_enabled = true
+region_rect = Rect2(45, 43, 23, 37)
+
+[node name="Sprite2D4" type="Sprite2D" parent="PlayerAnimator"]
+position = Vector2(-62, 51)
+texture = ExtResource("5_4sjlk")
+region_enabled = true
+region_rect = Rect2(43, 43, 27, 36)
