@@ -1,8 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://dgp2pi71tfsn3"]
+[gd_scene load_steps=14 format=3 uid="uid://u6a4o4h1ymv6"]
 
 [ext_resource type="Texture2D" uid="uid://byvtqheylxrpd" path="res://FreeKnight_v1/Colour2/NoOutline/120x80_PNGSheets/_Idle.png" id="1_f50pn"]
-[ext_resource type="Script" uid="uid://6r3uwb7xejbg" path="res://Scripts/character_body_2d.gd" id="1_ij6vw"]
-[ext_resource type="Script" uid="uid://kf2t4lqcukqc" path="res://Scripts/player_animator.gd" id="2_lhvu3"]
+[ext_resource type="Script" uid="uid://6r3uwb7xejbg" path="res://Scripts/playercontroller.gd" id="1_ij6vw"]
+[ext_resource type="Script" uid="uid://kf2t4lqcukqc" path="res://Scripts/player_animator.gd" id="2_q0xeb"]
 [ext_resource type="Texture2D" uid="uid://6frax5bp43d3" path="res://FreeKnight_v1/Colour2/NoOutline/120x80_PNGSheets/_Fall.png" id="3_dd465"]
 [ext_resource type="Texture2D" uid="uid://dnyxpudohtbax" path="res://FreeKnight_v1/Colour2/NoOutline/120x80_PNGSheets/_Jump.png" id="4_lhvu3"]
 [ext_resource type="Texture2D" uid="uid://bqte6l1qd50rx" path="res://FreeKnight_v1/Colour2/NoOutline/120x80_PNGSheets/_Run.png" id="5_4sjlk"]
@@ -141,7 +141,7 @@ _data = {
 &"move": SubResource("Animation_1kp85")
 }
 
-[node name="Player" type="CharacterBody2D"]
+[node name="PlayerController" type="CharacterBody2D"]
 script = ExtResource("1_ij6vw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -152,21 +152,32 @@ shape = SubResource("CapsuleShape2D_ij6vw")
 offset = Vector2(0, -15)
 zoom = Vector2(6, 6)
 
-[node name="PlayerAnimator" type="Node2D" parent="." node_paths=PackedStringArray("player_controller", "animation_player", "idle", "move", "jump", "fall")]
-script = ExtResource("2_lhvu3")
+[node name="PlayerAnimator" type="Node2D" parent="." node_paths=PackedStringArray("player_controller", "animation_player", "idle", "fall", "jump", "move")]
+script = ExtResource("2_q0xeb")
 player_controller = NodePath("..")
 animation_player = NodePath("AnimationPlayer")
 idle = NodePath("idle")
-move = NodePath("move")
-jump = NodePath("jump")
 fall = NodePath("fall")
+jump = NodePath("jump")
+move = NodePath("move")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerAnimator"]
 libraries = {
 &"": SubResource("AnimationLibrary_dd465")
 }
 autoplay = "idle"
-speed_scale = 1.844
+
+[node name="move" type="Sprite2D" parent="PlayerAnimator"]
+position = Vector2(1, 2)
+texture = ExtResource("5_4sjlk")
+region_enabled = true
+region_rect = Rect2(43, 43, 27, 36)
+
+[node name="jump" type="Sprite2D" parent="PlayerAnimator"]
+position = Vector2(1, 5)
+texture = ExtResource("4_lhvu3")
+region_enabled = true
+region_rect = Rect2(45, 43, 23, 37)
 
 [node name="idle" type="Sprite2D" parent="PlayerAnimator"]
 position = Vector2(1, 4)
@@ -175,19 +186,7 @@ region_enabled = true
 region_rect = Rect2(45, 43, 19, 37)
 
 [node name="fall" type="Sprite2D" parent="PlayerAnimator"]
-position = Vector2(1, 4)
+position = Vector2(0, 3)
 texture = ExtResource("3_dd465")
 region_enabled = true
 region_rect = Rect2(40, 43, 27, 37)
-
-[node name="jump" type="Sprite2D" parent="PlayerAnimator"]
-position = Vector2(2, 5)
-texture = ExtResource("4_lhvu3")
-region_enabled = true
-region_rect = Rect2(45, 43, 23, 37)
-
-[node name="move" type="Sprite2D" parent="PlayerAnimator"]
-position = Vector2(2, 4)
-texture = ExtResource("5_4sjlk")
-region_enabled = true
-region_rect = Rect2(43, 43, 27, 36)

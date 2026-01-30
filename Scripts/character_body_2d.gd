@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name PlayerController
 
 @export var speed = 10.0
 #const SPEED = 300.0

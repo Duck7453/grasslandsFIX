@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cf755ftbjxbtp"]
 
 [ext_resource type="Texture2D" uid="uid://b7qgikgxnl13i" path="res://Grasslands Tileset/spritesheet/spritesheet.png" id="1_bb12l"]
-[ext_resource type="PackedScene" uid="uid://u6a4o4h1ymv6" path="res://character_body_2d.tscn" id="2_qpjuv"]
+[ext_resource type="PackedScene" uid="uid://u6a4o4h1ymv6" path="res://playercontroller.tscn" id="2_qpjuv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qpjuv"]
 texture = ExtResource("1_bb12l")
@@ -1546,7 +1546,7 @@ sources/0 = SubResource("TileSetAtlasSource_qpjuv")
 position = Vector2(1, -2)
 tile_set = SubResource("TileSet_fy505")
 format = 2
-layer_0/tile_data = PackedInt32Array(65536, 131072, 2, 65537, 196608, 2, 65538, 262144, 2, 65539, 327680, 2, 65540, 393216, 2, 65541, 458752, 2, 65542, 524288, 2, 65543, 131072, 2, 65544, 196608, 2, 65545, 262144, 2, 65546, 327680, 2, 65547, 393216, 2, 65548, 458752, 2, 65549, 524288, 2)
+layer_0/tile_data = PackedInt32Array(65536, 131072, 2, 65537, 196608, 2, 65538, 262144, 2, 65539, 327680, 2, 65540, 393216, 2, 65541, 458752, 2, 65542, 524288, 2, 65543, 131072, 2, 65544, 196608, 2, 65545, 262144, 2, 65546, 327680, 2, 65547, 393216, 2, 65548, 458752, 2, 65549, 524288, 2, 65550, 131072, 2, 65551, 196608, 2, 65552, 262144, 2, 65553, 327680, 2, 65554, 393216, 2, 65555, 458752, 2, 65556, 524288, 2, 65557, 131072, 2, 65558, 196608, 2, 65559, 262144, 2, 65560, 327680, 2, 65561, 393216, 2, 65562, 458752, 2, 65563, 524288, 2, -65513, 131072, 2, -65512, 196608, 2, -65511, 262144, 2, -65510, 327680, 2, -65509, 393216, 2, -65508, 458752, 2, -65507, 524288, 2, -196580, 131072, 2, -196579, 196608, 2, -196578, 262144, 2, -196577, 327680, 2, -196576, 393216, 2, -196575, 458752, 2, -196574, 524288, 2, -327648, 131072, 2, -327647, 196608, 2, -327646, 262144, 2, -327645, 327680, 2, -327644, 393216, 2, -327643, 458752, 2, -327642, 524288, 2)
 
 [node name="Player" parent="." instance=ExtResource("2_qpjuv")]
-position = Vector2(57, -51)
+position = Vector2(103, -49)
