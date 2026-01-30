@@ -1,0 +1,12 @@
+# Godot editor cache
+.godot/
+.import/
+
+# Export files
+export.cfg
+export_presets.cfg
+
+# Mono / C#
+.mono/
+data_*/
+
