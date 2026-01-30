@@ -1,12 +1,57 @@
-[gd_scene load_steps=3 format=3 uid="uid://u6a4o4h1ymv6"]
+[gd_scene load_steps=7 format=3 uid="uid://u6a4o4h1ymv6"]
 
 [ext_resource type="Texture2D" uid="uid://byvtqheylxrpd" path="res://FreeKnight_v1/Colour2/NoOutline/120x80_PNGSheets/_Idle.png" id="1_f50pn"]
 [ext_resource type="Script" uid="uid://6r3uwb7xejbg" path="res://Scripts/character_body_2d.gd" id="1_ij6vw"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ij6vw"]
+radius = 9.0
+height = 32.0
+
+[sub_resource type="Animation" id="Animation_ghijl"]
+resource_name = "idle"
+length = 2.25
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Rect2(45, 43, 19, 37), Rect2(165, 43, 19, 37), Rect2(285, 43, 19, 37), Rect2(405, 43, 19, 37), Rect2(525, 43, 19, 37), Rect2(645, 43, 19, 37), Rect2(765, 43, 19, 37), Rect2(885, 43, 19, 37), Rect2(1005, 43, 19, 37), Rect2(1125, 43, 19, 37)]
+}
+
+[sub_resource type="Animation" id="Animation_44cfe"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(45, 43, 19, 37)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dd465"]
+_data = {
+&"RESET": SubResource("Animation_44cfe"),
+&"idle": SubResource("Animation_ghijl")
+}
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_ij6vw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4)
+shape = SubResource("CapsuleShape2D_ij6vw")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(0, -15)
@@ -15,8 +60,13 @@ zoom = Vector2(6, 6)
 [node name="PlayerAnimator" type="Node2D" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerAnimator"]
+libraries = {
+&"": SubResource("AnimationLibrary_dd465")
+}
+autoplay = "idle"
 
 [node name="Sprite2D" type="Sprite2D" parent="PlayerAnimator"]
+position = Vector2(0, 3)
 texture = ExtResource("1_f50pn")
 region_enabled = true
-region_rect = Rect2(34.80027, 36.89361, 40.037224, 43.836372)
+region_rect = Rect2(45, 43, 19, 37)
